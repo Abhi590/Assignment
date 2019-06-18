@@ -1,0 +1,21 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "WebApp_Name": {
+            "value": "Abhishek-Webapp"
+        },
+        "ASP_Id": {
+            "value": "/subscriptions/e21c2904-6a7b-43ef-a8c1-885d29ce0f57/resourceGroups/Abhishek-a-rg/providers/Microsoft.Web/serverfarms/ASP-Abhishekarg-9513",
+        },
+        "Vnet_Id": {
+            "value": "/subscriptions/e21c2904-6a7b-43ef-a8c1-885d29ce0f57/resourceGroups/Abhishek-a-rg/providers/Microsoft.Network/virtualNetworks/Abhi-Vnet",
+        },
+		"location": {
+            "value": "westeurope",
+        },
+		"Subnet": {
+            "value": "Abhi-Subnet1",
+        }
+    }
+}

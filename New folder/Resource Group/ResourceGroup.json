@@ -1,0 +1,47 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+    "contentVersion": "1.0.0.1",
+    "parameters": {
+        "ResourceGroupName": {
+            "type": "string",
+            "metadata": {
+                "description": "Specifies the Resource Group Name"
+            }
+        },
+        "ResourceGroupLocation": {
+            "type": "string",
+            "defaultValue": "westeurope",
+            "metadata": {
+                "description": "Specifies the RG location"
+            }
+        },
+        "ResourceGroupTags": {
+            "type": "object",
+            "defaultValue": {},
+            "metadata": {
+                "description": "Specifies the RG tags"
+            }
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Resources/resourceGroups",
+            "apiVersion": "2018-05-01",
+            "name": "[parameters('ResourceGroupName')]",
+            "location": "[parameters('ResourceGroupLocation')]",
+            "tags": "[parameters('ResourceGroupTags')]",
+            "properties": {}
+        }
+    ],
+    "outputs": {
+        "resourceGroupOutput": {
+            "type": "object",
+            "value": "[reference(parameters('ResourceGroupName'))]"
+        },
+        "resourceId": {
+             "type": "string",
+             "value": "[concat(subscription().id, '/resourceGroups/', parameters('ResourceGroupName'))]"
+        }
+    }
+}

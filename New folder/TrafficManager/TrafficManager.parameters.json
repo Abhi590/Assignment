@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "TrafficManagerName": {
+            "value": "Abhishek-TrafficManager"
+        },
+		"Endpoint1_Name": {
+            "value": "Abhishek-Webapp"
+        },
+        "Endpoint1_ID": {
+            "value": "/subscriptions/e21c2904-6a7b-43ef-a8c1-885d29ce0f57/resourceGroups/Abhishek-a-rg/providers/Microsoft.Web/sites/Abhishek-Webapp-Sec"
+        },
+		"Endpoint1_Location": {
+            "value": "northeurope"
+        },
+		"Endpoint2_Name": {
+            "value": "Abhishek-Webapp-Sec"
+        },
+        "Endpoint2_ID": {
+            "value": "/subscriptions/e21c2904-6a7b-43ef-a8c1-885d29ce0f57/resourceGroups/Abhishek-a-rg/providers/Microsoft.Web/sites/Abhishek-Webapp"
+        }
+		"Endpoint2_Location": {
+            "value": "westeurope"
+        }
+    }
+}

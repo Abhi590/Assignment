@@ -1,0 +1,14 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "ResourceGroupName": "Abhishek-a-rg",
+        "ResourceGroupLocation":  "westeurope",
+        "ResourceGroupTags": {
+            "Product": "Resource Group",
+            "Organization": "AbhiOrg",
+            "Application": "AbhiApp",
+            "BillingId": "AbhiBill1"
+        }
+    }
+  }

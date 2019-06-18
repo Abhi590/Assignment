@@ -1,0 +1,110 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "DLS_Name": {
+            "type": "String",
+			"metadata": {
+                "description": "Provide the datalake store name."
+            }
+        },
+		"location": {
+            "type": "String",
+			"metadata": {
+                "description": "Location of the datalake store."
+            }
+        },
+		"storageSku": {
+            "type": "String",
+			"defaultValue": "Standard_LRS",
+            "allowedValues": [
+                "Standard_LRS",
+                "Standard_GRS",
+                "Standard_RAGRS",
+                "Standard_ZRS"
+            ],
+			"metadata": {
+                "description": "Provide the SKU required for dls."
+            }
+        },
+		"StorageTier": {
+            "type": "String",
+			"metadata": {
+                "description": "Provide the required storage tier."
+            }
+        },
+        "VnetId": {
+            "type": "String",
+			"metadata": {
+                "description": "Provide the resource Id of Vnet, which need to be configured."
+            }
+        },
+		"Subnet": {
+            "type": "String",
+			"metadata": {
+                "description": "Provide the subnet name, where the dls need to be deployed."
+            }
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2019-04-01",
+            "name": "[parameters('DLS_Name')]",
+            "location": "[parameters('location')]",
+            "tags": {
+                "Product": "Abhi-DLS",
+                "Organization": "AbhiOrg",
+                "Application": "AbhiApp",
+                "BillingId": "AbhiBill1"
+            },
+            "sku": {
+                "name": "[parameters('storageSku')]",
+                "tier": "[parameters('StorageTier')]"
+            },
+            "kind": "StorageV2",
+            "properties": {
+                "isHnsEnabled": true,
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [
+                        {
+                            "id": "[concat(parameters('VnetId'), '/subnets/', parameters('Subnet'))]",
+                            "action": "Allow",
+                            "state": "Succeeded"
+                        }
+                    ],
+                    "ipRules": [],
+                    "defaultAction": "Deny"
+                },
+                "supportsHttpsTrafficOnly": true,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                },
+                "accessTier": "Hot"
+            }
+        },
+		"resources": [{
+            "apiVersion": "2017-04-01",
+            "condition": "[parameters('cannotDelete')]",
+            "name": "[concat(parameters('DLS_Name'), '/Microsoft.Authorization/storageLock')]",
+            "type": "Microsoft.Storage/storageAccounts/providers/locks",
+            "dependsOn": [
+                "[parameters('DLS_Name')]"
+            ],
+            "properties": {
+                "level": "cannotDelete",
+                "notes": "Datalake Storage account should not be deleted"
+            }
+        }]
+    ]
+}

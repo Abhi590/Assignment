@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "VnetName": {
+            "value": "Abhi-Vnet"
+        },
+		"location": {
+            "value": "westeurope"
+        },
+		"VnetaddressPrefixes": {
+            "value": "10.0.0.0/16"
+        },
+		"Subnet1Name": {
+            "value": "Abhi-Subnet1"
+        },
+		"Subnet1Prefix": {
+            "value": "10.0.0.0/24"
+        },
+		"Subnet2Name": {
+            "value": "Abhi-Subnet2"
+        },
+		"Subnet2Prefix": {
+            "value": "10.0.1.0/24"
+        }
+    }
+}

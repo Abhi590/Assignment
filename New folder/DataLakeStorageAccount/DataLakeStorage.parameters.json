@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "DLS_Name": {
+            "value": "abhidls"
+        },
+		"location": {
+            "value": "westeurope"
+        },
+		"storageSku": {
+            "value": "Standard_RAGRS"
+        },
+		"StorageTier": {
+            "value": "Standard"
+        },
+        "VnetId": {
+            "value": "/subscriptions/e21c2904-6a7b-43ef-a8c1-885d29ce0f57/resourceGroups/Abhishek-a-rg/providers/Microsoft.Network/virtualNetworks/Abhi-Vnet"
+        },
+		"Subnet": {
+            "value": "Abhi-Subnet1"
+        }
+    }
+}
