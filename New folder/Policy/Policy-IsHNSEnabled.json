@@ -1,0 +1,43 @@
+{
+	"type": "Microsoft.Authorization/policyDefinitions",
+	"name": "data-lake-storage-gen2-hns-audit",
+	"properties": {
+		"displayName": "Data Lake Storage gen2 - Audit hierarchical namespace on Storage account",
+		"description": "This policy audits hierarchical namespace is enabled on Storage account.",
+		"mode": "All",
+		"parameters": {
+			"productTagFilter": {
+				"type": "String",
+				"metadata": {
+					"displayName": "Product Tag Filter",
+					"description": "The filter for the Product tag applied to Storage account resource. This policy only applies to resources that match the filter."
+				}
+			}
+		},
+		"policyRule": {
+			"if": {
+				"allOf": [
+					{
+						"field": "tags['Product']",
+						"like": "[parameters('productTagFilter')]"
+					},
+					{
+						"allOf": [
+							{
+								"field": "type",
+								"equals": "Microsoft.Storage/storageAccounts"
+							},
+							{
+								"field": "Microsoft.Storage/storageAccounts/isHnsEnabled",
+								"exists": false
+							}
+						]
+					}
+				]
+			},
+			"then": {
+				"effect": "audit"
+			}
+		}
+	}
+}

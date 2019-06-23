@@ -1,0 +1,20 @@
+{
+    "name": "data-lake-storage Gen2",
+    "type": "Microsoft.Authorization/policySetDefinitions",
+    "properties": {
+        "displayName": "Data Lake Storage Gen2",
+        "policyType": "Custom",
+        "description": "Audits settings on the Storage account created by the Data Lake Storage product.",
+        "parameters": {},
+        "policyDefinitions": [
+            {
+                "policyDefinitionId": "/subscriptions/e21c2904-6a7b-43ef-a8c1-885d29ce0f57/providers/Microsoft.Authorization/policyDefinitions/data-lake-storage-gen2-hns-audit",
+                "parameters": {
+                    "productTagFilter": {
+                        "value": "*DLS"
+                    }
+                }
+            }
+        ]
+    }
+}
