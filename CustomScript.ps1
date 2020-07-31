@@ -9,3 +9,5 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 # .\rabbitmq-plugins enable rabbitmq_management
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Invoke-WebRequest "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-Windows-x86_64.exe" -UseBasicParsing -OutFile $Env:ProgramFiles\Docker\docker-compose.exe
+#docker pull olandese/rabbit-qs2
+docker run -d -p 15672:15672 -p 5672:5672 --name rabbit olandese/rabbit-qs2
