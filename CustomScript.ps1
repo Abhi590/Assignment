@@ -7,3 +7,5 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 # choco install rabbitmq cup all -y
 # cd 'c:\Program Files\RabbitMQ Server\rabbitmq_server-3.8.5\sbin'
 # .\rabbitmq-plugins enable rabbitmq_management
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+Invoke-WebRequest "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-Windows-x86_64.exe" -UseBasicParsing -OutFile $Env:ProgramFiles\Docker\docker-compose.exe
